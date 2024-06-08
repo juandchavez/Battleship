@@ -16,14 +16,19 @@ public:
 	// Default constructor
 	Battleship();
 	// Constructor to set up the game
-	Battleship(int m_xSize, int m_ySize);
-	// Create the game baord
+	Battleship(int, int);
+	void setx(int);
+	int getx();
+	void sety(int);
+	int gety();
+	// Create the game board
 	void createBoard();
 	// Print the game board
 	void printBoard();
 	// Update board
 	void updateBoard();
 	void createShips();
+	void getError(int err);
 
 };
 
