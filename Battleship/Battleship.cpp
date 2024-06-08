@@ -46,7 +46,7 @@ void Battleship::setx(int xSize) {
 	}
 	catch (ERROR err) {
 		getError(err);
-		return;
+		exit(err);
 	}
 
 }
@@ -79,7 +79,7 @@ void Battleship::sety(int ySize) {
 	}
 	catch (ERROR err) {
 		getError(err);
-		return;
+		exit(err);
 	}
 }
 
@@ -110,9 +110,10 @@ void Battleship::createBoard() {
 // Print the game board
 void Battleship::printBoard() {
 	for (int i = 0; i < m_xSize; i++) {
-		for (int j = 0; j < m_ySize; i++) {
-			std::cout << m_gameboard[i][j] << std::endl;
+		for (int j = 0; j < m_ySize; j++) {
+			std::cout << m_gameboard[i][j];
 		}
+		std::cout << std::endl;
 	}
 }
 // Update board

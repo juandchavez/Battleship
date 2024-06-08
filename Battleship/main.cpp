@@ -23,6 +23,9 @@ int main()
 	std::cin >> y;
 	demo.sety(y);
 
+	demo.createBoard();
+	demo.printBoard();
+
 	std::cout << "---- END OF DEBUG ----" << std::endl;
 	#endif DEBUG
 
