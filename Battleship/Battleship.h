@@ -10,7 +10,8 @@ class Battleship {
 private:
 	int m_xSize{};	// Size of the board on x-axis
 	int m_ySize{};	// Size of the board on y-axis
-	std::vector<std::vector<char>> m_gameboard {};	// The  gameboard to play on
+	std::vector<std::vector<const wchar_t*>> m_gameboard {};	// The gameboard to play on
+	std::vector<std::vector<const wchar_t*>> m_shipyard{};		// Holds the battleships
 
 public:
 	// Default constructor
@@ -25,9 +26,14 @@ public:
 	void createBoard();
 	// Print the game board
 	void printBoard();
-	// Update board
+	// Update board based on attacked ships
 	void updateBoard();
+	// Create the ships
 	void createShips();
+	void shipHit();
+	void shipUpdate();
+	
+	// Return errors
 	void getError(int err);
 
 };
