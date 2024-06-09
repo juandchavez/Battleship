@@ -1,6 +1,8 @@
-#include "Battleship.h"
+﻿#include "Battleship.h"
 #include <vector>
 #include <iostream>
+#include <string>
+
 
 enum ERROR {
 	BOARDSIZE = 90,
@@ -100,7 +102,16 @@ int Battleship::gety() {
 
 // Create the game baord
 void Battleship::createBoard() {
-	char sea = 'O';
+	// Found in builtin character map
+	const wchar_t sea = '□';
+
+	const wchar_t* uniP = nullptr;
+
+	if (getx() || gety()) {
+		// Do nothing, just use the builtin error handlers
+	}
+
+
 	std::vector<char> row(m_ySize, sea);
 
 	for (int i = 0; i < m_xSize; i++) {
@@ -111,7 +122,9 @@ void Battleship::createBoard() {
 void Battleship::printBoard() {
 	for (int i = 0; i < m_xSize; i++) {
 		for (int j = 0; j < m_ySize; j++) {
-			std::cout << m_gameboard[i][j];
+			//std::cout << m_gameboard[i][j];
+
+			wprintf(L"□");
 		}
 		std::cout << std::endl;
 	}
