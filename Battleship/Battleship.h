@@ -10,6 +10,12 @@ class Battleship {
 private:
 	int m_xSize{};	// Size of the board on x-axis
 	int m_ySize{};	// Size of the board on y-axis
+	// Found in builtin character map : Blank square
+	const wchar_t* sea = L"\u25A1";
+	// Found in builtin character map: Black square
+	const wchar_t* shippart = L"\u25A0";
+	const wchar_t* hit = L"\u263c";
+	const wchar_t* miss = L"x";
 	std::vector<std::vector<const wchar_t*>> m_gameboard {};	// The gameboard to play on
 	std::vector<std::vector<const wchar_t*>> m_shipyard{};		// Holds the battleships
 
@@ -27,10 +33,12 @@ public:
 	// Print the game board
 	void printBoard();
 	// Update board based on attacked ships
-	void updateBoard();
+	int updateBoard(int, int, char);
 	// Create the ships
 	void createShips();
+	// Check for an attacked ship
 	void shipHit();
+
 	void shipUpdate();
 	
 	// Return errors

@@ -13,7 +13,8 @@ enum ERROR {
 	XSIZE = 91,
 	YSIZE = 92,
 	UNKNOWN_XSIZE = 93,
-	UNKNOWN_YSIZE = 94
+	UNKNOWN_YSIZE = 94,
+	OCCUPIED = 95
 };
 
 /**
@@ -108,8 +109,6 @@ int Battleship::gety() {
 
 // Create the game baord
 void Battleship::createBoard() {
-	// Found in builtin character map
-	const wchar_t* sea = L"\u25A1";
 
 	if (getx() || gety()) {
 		// Do nothing, just use the builtin error handlers
@@ -131,14 +130,28 @@ void Battleship::printBoard() {
 		std::wcout << std::endl;
 	}
 }
-// Update board
-void Battleship::updateBoard() {
+// Update board : Need to privatetize this later
+int Battleship::updateBoard(int xCoord, int yCoord, char type) {
+	const wchar_t* space = m_gameboard[xCoord][yCoord];
 
+	// Check for an empty space
+	if (wcscmp(space, sea) == 0) {
+		if (type == 'H') {
+			m_gameboard[xCoord][yCoord] = hit;
+			return 0;
+		}
+		else if (type == 'M') {
+			m_gameboard[xCoord][yCoord] = miss;
+			return 0;
+		}
+	}
+	else {
+		getError(OCCUPIED);
+		return -1;
+	}
 }
-//
+
 void Battleship::createShips() {
-	// Found in builtin character map: Black square
-	const wchar_t* shippart = L"\u25A0";
 	// Ships will be determined by size
 	int battleship = 4;
 	int cruiser = 3;
@@ -187,6 +200,9 @@ void Battleship::getError(int err) {
 		break;
 	case UNKNOWN_YSIZE:
 		std::wcout << "\nERR: Y-axis was never defined" << std::endl;
+		break;
+	case OCCUPIED:
+		std::wcout << "\nERR: Already occupied" << std::endl;
 		break;
 	default:
 		std::wcout << "UNKNOWN ERROR - FORCE QUIT!" << std::endl;

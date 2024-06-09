@@ -3,7 +3,7 @@
 #include <iomanip>
 #include <string>
 #include <cctype>
-
+#include "console.h"
 #ifdef _WIN32
 #include <Windows.h>
 #include <io.h>
@@ -11,23 +11,6 @@
 #endif
 
 #define DEBUG
-
-void clear() {
-	COORD topLeft = { 0, 0 };
-	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
-	CONSOLE_SCREEN_BUFFER_INFO screen;
-	DWORD written;
-
-	GetConsoleScreenBufferInfo(console, &screen);
-	FillConsoleOutputCharacterA(
-		console, ' ', screen.dwSize.X * screen.dwSize.Y, topLeft, &written
-	);
-	FillConsoleOutputAttribute(
-		console, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE,
-		screen.dwSize.X * screen.dwSize.Y, topLeft, &written
-	);
-	SetConsoleCursorPosition(console, topLeft);
-}
 
 int main() {
 #ifdef _WIN32
@@ -39,6 +22,7 @@ int main() {
 	std::wcout << std::setw(65);
 	std::wcout << "---- DEBUG ----" << std::endl;
 	Battleship demo;
+	Screen tv;
 	int x = 0;
 	int y = 0;
 	char user = '\0';
@@ -74,7 +58,7 @@ int main() {
 	else {
 		std::wcout << "\nContinuing" << std::endl;
 	}
-	clear();
+	tv.clear();
 
 
 	demo.createBoard();
@@ -82,8 +66,11 @@ int main() {
 	std::wcout << "Creating battleships " << std::endl;
 	demo.createShips();
 	std::wcout << "Simulating a hit " << std::endl;
+	demo.updateBoard(2, 2, 'H');
+	demo.printBoard();
 	std::wcout << "Simulating a miss " << std::endl;
-	std::wcout << std::setw(65);
+	demo.updateBoard(2, 3, 'M');
+	demo.printBoard();
 	std::wcout << "---- END OF DEBUG ----" << std::endl;
 #endif DEBUG
 
