@@ -10,6 +10,9 @@ class Battleship {
 private:
 	int m_xSize{};	// Size of the board on x-axis
 	int m_ySize{};	// Size of the board on y-axis
+	// Number of ships we have currently
+	const int numOfships = 5;
+	std::vector<int> fleet {};
 	// Found in builtin character map : Blank square
 	const wchar_t* sea = L"\u25A1";
 	// Found in builtin character map: Black square
@@ -37,8 +40,8 @@ public:
 	// Create the ships
 	void createShips();
 	// Check for an attacked ship
+	void placeShips();
 	void shipHit();
-
 	void shipUpdate();
 	
 	// Return errors

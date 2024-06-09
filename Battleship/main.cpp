@@ -16,7 +16,6 @@ int main() {
 #ifdef _WIN32
 	//SetConsoleOutputCP(CP_UTF8);
 	_setmode(_fileno(stdout), _O_U16TEXT);
-	std::wcout << L"Hello, \u25A1!\n";
 #endif
 #ifdef DEBUG
 	std::wcout << std::setw(65);

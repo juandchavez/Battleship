@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <time.h>
 
 #include <io.h>
 #include <fcntl.h>
@@ -158,10 +159,13 @@ void Battleship::createShips() {
 	int submarine = 3;
 	int destroyer = 2;
 	int carrier = 5;
-	// Number of ships we have currently
-	const int numOfships = 5;
+	const int tempNumShips = 5;
 
-	int fleet[numOfships] = {battleship, cruiser, submarine, destroyer, carrier};
+	int temp[tempNumShips] = {battleship,cruiser,submarine,destroyer,carrier};
+
+
+	for (int i = 0; i < numOfships; i++)
+		fleet.push_back(temp[i]);
 
 	// Create each ship
 	for (int i = 0; i < numOfships; i++) {
@@ -180,6 +184,20 @@ void Battleship::createShips() {
 	}
 
 }
+void Battleship::placeShips() {
+	unsigned long num = 0;
+	int random = 0;
+
+
+	srand((unsigned)time(NULL));
+	
+	for (int i = 0; i < numOfships; i++) {
+		random = rand();
+		for
+
+	}
+}
+
 void Battleship::shipHit() {
 
 }
