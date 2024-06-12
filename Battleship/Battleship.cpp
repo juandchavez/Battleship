@@ -18,8 +18,13 @@ enum ERROR {
 	OCCUPIED = 95
 };
 
+const int carrier = 5;
+const int battleship = 4;
+const int cruiser = 3;
+const int submarine = 3;
+const int destroyer = 2;
+
 /**
-Battleship()
 
 Desc: Creates a default boardsize with one ship for testing
 Passed:	None
@@ -152,17 +157,13 @@ int Battleship::updateBoard(int xCoord, int yCoord, char type) {
 	}
 }
 
-void Battleship::createShips() {
+void Battleship::displayShips() {
 	// Ships will be determined by size
-	int battleship = 4;
-	int cruiser = 3;
-	int submarine = 3;
-	int destroyer = 2;
-	int carrier = 5;
 	const int tempNumShips = 5;
 
-	int temp[tempNumShips] = {battleship,cruiser,submarine,destroyer,carrier};
-
+	int temp[tempNumShips] = {carrier,battleship,cruiser,submarine,destroyer};
+	std::wstring shipType[tempNumShips] = {L"Carrier", L"Battleship", L"Cruiser", L"Submarine", L"Destroyer"};
+	
 
 	for (int i = 0; i < numOfships; i++)
 		fleet.push_back(temp[i]);
@@ -177,6 +178,7 @@ void Battleship::createShips() {
 
 	for (int i = 0; i < numOfships; i++) {
 		//std::wcout << std::setw(55);
+		std::wcout << shipType[i].c_str() << std::setw(5);
 		for (int j = 0; j < fleet[i]; j++) {
 			std::wcout << m_shipyard[i][j] << " ";
 		}
@@ -184,17 +186,47 @@ void Battleship::createShips() {
 	}
 
 }
+
+/**
+
+Desc: Gets a random number to place a battle ship on the game board. 
+Uses a sliding window method to get coordinates in pairs
+Passed:	None
+Returned: None
+*/
 void Battleship::placeShips() {
 	unsigned long num = 0;
+	char alignment = '\0';
 	int random = 0;
+	int mixFlag = 0;
+	int xCoord = 0;
+	int yCoord = 0;
 
+	const int tempNumShips = 5;
+
+	int temp[tempNumShips] = { carrier,battleship,cruiser,submarine,destroyer };
+
+	shipCoords;
 
 	srand((unsigned)time(NULL));
 	
 	for (int i = 0; i < numOfships; i++) {
-		random = rand();
-		for
+		// Get the first pair
+		xCoord = rand() % getx();
+		yCoord = rand() % gety();
 
+
+		if ((random & 1) == 1) {
+			// if odd; Place the ship horizontally
+			alignment = 'H';
+			
+		}
+		else {
+			// if even; Place the ship vertically;
+			alignment = 'V';
+		}
+		// Need to check if we are at the top or bottom of the board
+		checkBoardLimit(xCoord, yCoord, temp[i], alignment);
 	}
 }
 
@@ -229,4 +261,23 @@ void Battleship::getError(int err) {
 
 	}
 
+}
+
+int Battleship::checkBoardLimit(int xCoord, int yCoord, int type, char align) {
+	// Handle the limits based on the type of ship
+	// Note: case cruiser will handle submarine limits too since they are the same size
+	// TODO: Map this out visually
+	switch (type) {
+	case carrier:
+		if (align == 'H') {
+		}
+		break;
+	case battleship:
+		break;
+	case cruiser:
+		break;
+	case destroyer:
+		break;
+
+	}
 }

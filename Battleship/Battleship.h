@@ -10,15 +10,13 @@ class Battleship {
 private:
 	int m_xSize{};	// Size of the board on x-axis
 	int m_ySize{};	// Size of the board on y-axis
-	// Number of ships we have currently
-	const int numOfships = 5;
-	std::vector<int> fleet {};
-	// Found in builtin character map : Blank square
-	const wchar_t* sea = L"\u25A1";
-	// Found in builtin character map: Black square
-	const wchar_t* shippart = L"\u25A0";
-	const wchar_t* hit = L"\u263c";
-	const wchar_t* miss = L"x";
+	const int numOfships = 5;	// Number of ships we have currently
+	std::vector<int> fleet {};	// Holds our battle ships as integers based on their size
+	std::vector<std::vector<int>> shipCoords;	// Each vector element will hold ship coordinates
+	const wchar_t* sea = L"\u25A1"; // Found in builtin character map : Blank square
+	const wchar_t* shippart = L"\u25A0";	// Found in builtin character map: Black square
+	const wchar_t* hit = L"\u263c";	// Unicode symbol for a hit
+	const wchar_t* miss = L"x"; //symbol for a miss
 	std::vector<std::vector<const wchar_t*>> m_gameboard {};	// The gameboard to play on
 	std::vector<std::vector<const wchar_t*>> m_shipyard{};		// Holds the battleships
 
@@ -39,10 +37,12 @@ public:
 	int updateBoard(int, int, char);
 	// Create the ships
 	void createShips();
-	// Check for an attacked ship
+	void displayShips();
 	void placeShips();
+	// Check for an attacked ship
 	void shipHit();
 	void shipUpdate();
+	int checkBoardLimit(int, int, int, char);
 	
 	// Return errors
 	void getError(int err);

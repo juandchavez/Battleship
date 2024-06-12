@@ -63,13 +63,15 @@ int main() {
 	demo.createBoard();
 	demo.printBoard();
 	std::wcout << "Creating battleships " << std::endl;
-	demo.createShips();
+	demo.displayShips();
 	std::wcout << "Simulating a hit " << std::endl;
 	demo.updateBoard(2, 2, 'H');
 	demo.printBoard();
 	std::wcout << "Simulating a miss " << std::endl;
 	demo.updateBoard(2, 3, 'M');
 	demo.printBoard();
+
+	demo.placeShips();
 	std::wcout << "---- END OF DEBUG ----" << std::endl;
 #endif DEBUG
 
