@@ -1,4 +1,5 @@
 ﻿#include "Battleship.h"
+#include "Ship.h"
 #include <vector>
 #include <iostream>
 #include <string>
@@ -44,8 +45,7 @@ Battleship::Battleship(int xSize, int ySize) {
 	std::wcout << "Creating the board!" << std::endl;
 	createBoard();
 	printBoard();
-	// TODO: insert board creation here
-	// and create ships
+	// TODO: insert board creation here and create ships
 }
 
 void Battleship::setx(int xSize) {
@@ -164,7 +164,7 @@ void Battleship::displayShips() {
 	int temp[tempNumShips] = {carrier,battleship,cruiser,submarine,destroyer};
 	std::wstring shipType[tempNumShips] = {L"Carrier", L"Battleship", L"Cruiser", L"Submarine", L"Destroyer"};
 	
-
+	/*
 	for (int i = 0; i < numOfships; i++)
 		fleet.push_back(temp[i]);
 
@@ -184,7 +184,7 @@ void Battleship::displayShips() {
 		}
 		std::wcout << std::endl;
 	}
-
+	*/
 }
 
 /**
@@ -270,13 +270,17 @@ int Battleship::checkBoardLimit(int xCoord, int yCoord, int type, char align) {
 	switch (type) {
 	case carrier:
 		if (align == 'H') {
+			return 0;
 		}
 		break;
 	case battleship:
+		return 0;
 		break;
 	case cruiser:
+		return 0;
 		break;
 	case destroyer:
+		return 0;
 		break;
 
 	}

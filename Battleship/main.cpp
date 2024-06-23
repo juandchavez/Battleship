@@ -26,6 +26,16 @@ int main() {
 	int y = 0;
 	char user = '\0';
 
+	const int numShips = 5;
+	const int carrier = 5;
+	const int battleship = 4;
+	const int cruiser = 3;
+	const int submarine = 3;
+	const int destroyer = 2;
+
+	int battleships[numShips] = { carrier,battleship,cruiser,submarine,destroyer };
+	std::wstring shipType[numShips] = { L"Carrier", L"Battleship", L"Cruiser", L"Submarine", L"Destroyer" };
+
 
 	//Attempt to create a board with no size
 	//demo.createBoard();
@@ -63,6 +73,7 @@ int main() {
 	demo.createBoard();
 	demo.printBoard();
 	std::wcout << "Creating battleships " << std::endl;
+
 	demo.displayShips();
 	std::wcout << "Simulating a hit " << std::endl;
 	demo.updateBoard(2, 2, 'H');
