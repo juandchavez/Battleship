@@ -36,16 +36,18 @@ Battleship::Battleship() {
 	m_xSize = 0;
 	m_ySize = 0;
 	m_gameboard;
+	m_shipCoords;
+	m_fleetSize = 0;
 }
 Battleship::Battleship(int xSize, int ySize) {
 	setx(xSize);
 	sety(ySize);
+	m_fleetSize = 0;
 
 	std::wcout << "\nYour boardsize will be " << m_xSize << " by " << m_ySize << std::endl;
 	std::wcout << "Creating the board!" << std::endl;
 	createBoard();
 	printBoard();
-	// TODO: insert board creation here and create ships
 }
 
 void Battleship::setx(int xSize) {
@@ -120,7 +122,7 @@ void Battleship::createBoard() {
 		// Do nothing, just use the builtin error handlers
 	}
 
-	std::vector<const wchar_t*> row(m_ySize, sea);
+	std::vector<const wchar_t*> row(m_ySize, m_sea);
 
 	for (int i = 0; i < m_xSize; i++) {
 		m_gameboard.push_back(row);
@@ -141,13 +143,13 @@ int Battleship::updateBoard(int xCoord, int yCoord, char type) {
 	const wchar_t* space = m_gameboard[xCoord][yCoord];
 
 	// Check for an empty space
-	if (wcscmp(space, sea) == 0) {
+	if (wcscmp(space, m_sea) == 0) {
 		if (type == 'H') {
-			m_gameboard[xCoord][yCoord] = hit;
+			m_gameboard[xCoord][yCoord] = m_hit;
 			return 0;
 		}
 		else if (type == 'M') {
-			m_gameboard[xCoord][yCoord] = miss;
+			m_gameboard[xCoord][yCoord] = m_miss;
 			return 0;
 		}
 	}
@@ -157,14 +159,22 @@ int Battleship::updateBoard(int xCoord, int yCoord, char type) {
 	}
 }
 
-void Battleship::displayShips() {
+void Battleship::createFleet(int hullSize, std::wstring shipType) {
+	Ship temp;
+	temp.createShip(hullSize, shipType);
+
+	m_fleet.push_back(temp);
+	m_fleetSize = m_fleetSize + 1;
+}
+
+void Battleship::displayFleet() {
+	/*
 	// Ships will be determined by size
 	const int tempNumShips = 5;
 
 	int temp[tempNumShips] = {carrier,battleship,cruiser,submarine,destroyer};
 	std::wstring shipType[tempNumShips] = {L"Carrier", L"Battleship", L"Cruiser", L"Submarine", L"Destroyer"};
 	
-	/*
 	for (int i = 0; i < numOfships; i++)
 		fleet.push_back(temp[i]);
 
@@ -185,6 +195,10 @@ void Battleship::displayShips() {
 		std::wcout << std::endl;
 	}
 	*/
+
+	for (int i = 0; i < m_fleetSize; i++) {
+		m_fleet[i].displayShip();
+	}
 }
 
 /**
@@ -206,7 +220,7 @@ void Battleship::placeShips() {
 
 	int temp[tempNumShips] = { carrier,battleship,cruiser,submarine,destroyer };
 
-	shipCoords;
+	m_shipCoords;
 
 	srand((unsigned)time(NULL));
 	

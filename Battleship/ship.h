@@ -5,11 +5,11 @@
 #include <string>
 class Ship {
 private:
-	int shipSize{};										// All of our battleships will be interger size
-	bool sunk{};										// Check if the ship was sunk already
-	std::vector<int> xCoord{};							// Location of ship on x-axis
-	std::vector<int> yCoord{};							// Location of ship on y-axis
-	std::wstring shipType{};							// The name of the battleship (wide string -> use L"" format)
+	int shipSize;										// All of our battleships will be interger size
+	bool sunk;											// Check if the ship was sunk already
+	std::vector<int> xCoord;							// Location of ship on x-axis
+	std::vector<int> yCoord;							// Location of ship on y-axis
+	std::wstring shipType;								// The name of the battleship (wide string -> use L"" format)
 	const wchar_t* shippart = L"\u25A0";				// Found in builtin character map: Black square
 	std::vector<const wchar_t*> health;					// How much damage the ship took
 	std::vector<const wchar_t*> hull;					// Visual representation of the battleship
@@ -23,6 +23,6 @@ public:
 	int  getyCoord();
 	void displayCoords();								// Debug only: Display the coordinates of the ship
 	void shipUpdate();									// Update the ship values
-	~Ship();											// Set all values to default at the end of the game
+	//~Ship();											// Set all values to default at the end of the game
 };
 #endif
