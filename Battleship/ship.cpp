@@ -7,7 +7,7 @@
 
 // Default: size - 1, health - 1, sunk - false, xCoord - 0, yCoord - 0, type - "Dummy"
 Ship::Ship(){
-	std::wcout << "Ship: Setting to defaults" << std::endl;
+	//std::wcout << "Ship: Setting to defaults" << std::endl;
 	shipSize = 1;
 	sunk = false;
 	xCoord.push_back(0);
