@@ -38,14 +38,12 @@ public:
 	void printBoard();
 	// Update board based on attacked ships
 	int updateBoard(int x, int y, char type);
-	//TODO: Transfer ship related functions to ship class
 	// Create the ships
 	void createFleet(int size, std::wstring type);
 	void displayFleet();
 	void placeShips();
 	// Check for an attacked ship
 	void shipHit();
-	void shipUpdate();
 
 	int checkBoardLimit(int, int, int, char);
 	

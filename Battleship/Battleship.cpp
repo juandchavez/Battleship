@@ -168,33 +168,6 @@ void Battleship::createFleet(int hullSize, std::wstring shipType) {
 }
 
 void Battleship::displayFleet() {
-	/*
-	// Ships will be determined by size
-	const int tempNumShips = 5;
-
-	int temp[tempNumShips] = {carrier,battleship,cruiser,submarine,destroyer};
-	std::wstring shipType[tempNumShips] = {L"Carrier", L"Battleship", L"Cruiser", L"Submarine", L"Destroyer"};
-	
-	for (int i = 0; i < numOfships; i++)
-		fleet.push_back(temp[i]);
-
-	// Create each ship
-	for (int i = 0; i < numOfships; i++) {
-		// Create a new battleship
-		std::vector<const wchar_t*> ship (fleet[i], shippart);
-		// Put the new ship into the ship yard
-		m_shipyard.push_back(ship);
-	}
-
-	for (int i = 0; i < numOfships; i++) {
-		//std::wcout << std::setw(55);
-		std::wcout << shipType[i].c_str() << std::setw(5);
-		for (int j = 0; j < fleet[i]; j++) {
-			std::wcout << m_shipyard[i][j] << " ";
-		}
-		std::wcout << std::endl;
-	}
-	*/
 
 	for (int i = 0; i < m_fleetSize; i++) {
 		m_fleet[i].displayShip();

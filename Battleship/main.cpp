@@ -73,7 +73,10 @@ int main() {
 	demo.createBoard();
 	demo.printBoard();
 	std::wcout << "Creating battleships " << std::endl;
-	demo.createFleet(battleships[0], shipType[0]);
+
+	for (int i = 0; i < numShips; i++) {
+		demo.createFleet(battleships[i], shipType[i]);
+	}
 	demo.displayFleet();
 	std::wcout << "Simulating a hit " << std::endl;
 	demo.updateBoard(2, 2, 'H');
