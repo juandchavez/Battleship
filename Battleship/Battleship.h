@@ -1,10 +1,10 @@
 ﻿// Battleship.h : Include file for standard system include files,
 // or project specific include files.
 #pragma once
-#ifndef BATTLESHIP_H
-#define BATTLESHIP_H
 #include <vector>
 #include "Ship.h"
+#ifndef BATTLESHIP_H
+#define BATTLESHIP_H
 class Battleship {
 private:
 	int m_xSize;												// Size of the board on x-axis
